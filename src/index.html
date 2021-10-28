@@ -5,8 +5,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap"
+      rel="stylesheet"
+    />
     <script src="js/controller.js" defer></script>
     <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body></body>
+  <body>
+    <div class="img-container">
+      <header class="header container">
+        <nav>
+          <img
+            class="logo"
+            src="./img/icon-pack/weather-114/svg/cloud-1214547.svg"
+            alt=""
+          />
+          <p class="header-temp">28&#176;C</p>
+          <p class="header-description">Mostly cloudy</p>
+        </nav>
+        <form action="#">
+          <input
+            class="city-name-input"
+            id="city-name"
+            type="text"
+            placeholder="city"
+          />
+          <label class="city-name-label" for="city-name">&#9906;</label>
+        </form>
+      </header>
+
+      <main>
+        <section class="section-display"></section>
+      </main>
+    </div>
+  </body>
 </html>
