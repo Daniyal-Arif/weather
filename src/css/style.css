@@ -68,6 +68,7 @@ nav {
 
   max-width: 130rem;
   margin: 0 auto;
+  margin-bottom: 4.8rem;
   height: 9.6rem;
   padding: 0 4.8rem;
 }
@@ -109,6 +110,9 @@ input[type="text"] {
 
 .section-weather {
   max-width: 110rem;
+  background-color: rgba(255, 255, 255, 0.075);
+  padding: 6.4rem;
+  border-radius: 12px;
 }
 
 .cards {
@@ -118,16 +122,27 @@ input[type="text"] {
 
 .card {
   font-size: 2rem;
-  padding: 1.6rem;
+  padding: 1.6rem 2.4rem;
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
-  gap: 1.6rem;
+  row-gap: 2.4rem;
+
+  transition: all 0.5s;
+}
+
+.card:hover {
+  transform: translateY(-10px);
 }
 
 .card-link:link,
 .card-link:visited {
   text-decoration: none;
   color: #fff;
+
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
 }
 
 .active {
