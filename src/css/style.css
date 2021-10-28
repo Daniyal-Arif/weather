@@ -6,6 +6,9 @@
 - Spacing system (px)
 2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
   */
+
+/* GENERAL STYLES */
+
 html {
   font-size: 62.5%;
 }
@@ -23,6 +26,12 @@ body {
   color: #fff;
 }
 
+.container {
+  max-width: 130rem;
+  margin: 0 auto;
+  padding: 0 3.2rem;
+}
+
 .img-container {
   max-width: 100%;
   height: 100vh;
@@ -32,6 +41,18 @@ body {
   background-position: center;
 }
 
+.grid {
+  display: grid;
+  column-gap: 3.2rem;
+  row-gap: 4.4rem;
+}
+
+.grid--2--columns {
+  grid-template-columns: 1fr 1fr;
+}
+
+/* HEADER */
+
 nav {
   font-size: 2.4rem;
 
@@ -39,17 +60,14 @@ nav {
   align-items: center;
   column-gap: 2.4rem;
 }
-.container {
-  max-width: 120rem;
-  margin: 0 auto;
-  padding: 0 3.2rem;
-}
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 
+  max-width: 130rem;
+  margin: 0 auto;
   height: 9.6rem;
   padding: 0 4.8rem;
 }
@@ -80,9 +98,38 @@ input:focus::placeholder {
 .city-name-label {
   font-size: 3.2rem;
   display: inline-block;
-  transform: rotate(-30deg);
+  transform: rotate(-45deg);
 }
 
 input[type="text"] {
   outline: none;
+}
+
+/* SECTION WEATHER */
+
+.section-weather {
+  max-width: 110rem;
+}
+
+.cards {
+  display: flex;
+  column-gap: 2.4rem;
+}
+
+.card {
+  font-size: 2rem;
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.card-link:link,
+.card-link:visited {
+  text-decoration: none;
+  color: #fff;
+}
+
+.active {
+  background-color: rgba(255, 255, 255, 0.15);
 }
