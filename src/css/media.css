@@ -1,0 +1,53 @@
+/* under 1200px */
+@media (max-width: 75em) {
+  html {
+    font-size: 56.25%;
+  }
+
+  .main {
+    margin-bottom: 4.6rem;
+  }
+
+  .footer {
+    max-width: 120rem;
+  }
+}
+
+/* under 1080px */
+@media (max-width: 67.5em) {
+  .section-weather {
+    max-width: 100rem;
+  }
+
+  .footer {
+    max-width: 110rem;
+  }
+}
+
+/* under 970px */
+@media (max-width: 60em) {
+  .footer,
+  .section-weather {
+    max-width: 90rem;
+  }
+
+  .section-more-info {
+    gap: 16rem;
+  }
+}
+
+/* under 860px */
+@media (max-width: 53em) {
+  .header {
+    max-width: 90rem;
+  }
+
+  .section-weather,
+  .footer {
+    max-width: 80rem;
+  }
+
+  .main {
+    margin-bottom: 3.2rem;
+  }
+}

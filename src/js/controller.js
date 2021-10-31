@@ -17,9 +17,9 @@ const data = {
   labels: labels,
   datasets: [
     {
-      label: "My First dataset",
-      backgroundColor: "rgba(0 , 0 , 0, 0.2)",
-      borderColor: "rgba(0 , 0 , 0, 0.2)",
+      label: "Temperature",
+      backgroundColor: "rgb(256 , 256 , 256)",
+      borderColor: "rgb(256 , 256 , 256)",
       data: [0, 10, 5, 2, 20, 30, 45],
     },
   ],
@@ -41,6 +41,9 @@ const config = {
       x: {
         grid: {
           display: false,
+        },
+        ticks: {
+          color: "white",
         },
       },
     },
