@@ -19,5 +19,8 @@
   "homepage": "https://github.com/Daniyal-Arif/weather#readme",
   "devDependencies": {
     "parcel": "^2.0.0"
+  },
+  "dependencies": {
+    "chart.js": "^3.6.0"
   }
 }
