@@ -1,3 +1,5 @@
+import * as model from "./model.js";
+
 import Chart from "chart.js/auto";
 
 const plugin = {
@@ -56,3 +58,39 @@ const config = {
 };
 
 const myChart = new Chart(document.getElementById("myChart"), config);
+
+const controlSearchResults = async function (city) {
+  try {
+    // load search results
+    const res = await fetch(
+      `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=dbf54ac89eff6b2c2ecbcaacd73096a4`
+    );
+    const data = await res.json();
+    if (!res.ok) throw new Error("city does not exist");
+    console.log(data.list);
+    const newData = data.list.map((obj) => {
+      return {
+        date: obj.dt_txt,
+        atmosphere: {
+          feelsLike: Math.round(obj.main.feels_like - 272.15),
+          humidity: obj.main.humidity,
+          pressure: obj.main.pressure,
+        },
+        temperature: {
+          temp: Math.round(obj.main.temp - 272.15),
+          tempMax: Math.round(obj.main.temp_max - 272.15),
+          tempMin: Math.round(obj.main.temp_min - 272.15),
+        },
+        description: obj.weather[0].description,
+        iconTag: obj.weather[0].main,
+      };
+    });
+    console.log(newData);
+    // refactor data received
+    const weather = {};
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+controlSearchResults("karachi");
