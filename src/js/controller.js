@@ -2,6 +2,7 @@ import * as model from "./model.js";
 import cardView from "./Views/cardView.js";
 
 import Chart from "chart.js/auto";
+import searchView from "./Views/searchView.js";
 
 const plugin = {
   id: "custom_canvas_background_color",
@@ -60,20 +61,23 @@ const config = {
 
 const myChart = new Chart(document.getElementById("myChart"), config);
 
-const controlSearchResults = async function (city) {
+const controlSearchResults = async function () {
   try {
+    // get search query
+    const query = searchView.getQuery();
+
     // load search results
-    await model.loadWeather(city);
+    await model.loadWeather(query);
 
     // render data on UI
     cardView.render(model.state.arrangedWeatherData);
-
-    // document
-    //   .querySelector(".section-weather")
-    //   .insertAdjacentHTML("afterbegin", markup);
   } catch (err) {
     console.log(err);
   }
 };
 
-controlSearchResults("london");
+const init = function () {
+  searchView.addHandlerSearch(controlSearchResults);
+};
+
+init();

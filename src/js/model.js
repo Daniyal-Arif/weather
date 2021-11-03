@@ -44,25 +44,22 @@ export const loadWeather = async function (city) {
       };
     });
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 6; i++) {
       const newDate = createDate(i);
+
       state.arrangedWeatherData.push(
         state.weatherData.filter((obj) => {
           return (
             obj.date ===
             `${newDate.getFullYear()}-${newDate.getMonth() + 1}-${
-              newDate.getDay() < 10 ? "0" + newDate.getDay() : newDate.getDay()
+              newDate.getDate() < 10
+                ? "0" + newDate.getDate()
+                : newDate.getDate()
             }`
           );
         })
       );
     }
-    // filter objects based on day
-
-    // const currentDate = new Date();
-    // console.log(currentDate);
-    // currentDate.setDate(currentDate.getDate() + 3);
-    // console.log(currentDate);
 
     console.log(state.arrangedWeatherData);
   } catch (err) {
@@ -70,8 +67,9 @@ export const loadWeather = async function (city) {
   }
 };
 
-const createDate = function (dayX) {
+const createDate = function (day) {
   const date = new Date();
-  date.setDate(date.getDate() + dayX);
+  date.setDate(date.getDate() + day);
+  console.log(date);
   return date;
 };
