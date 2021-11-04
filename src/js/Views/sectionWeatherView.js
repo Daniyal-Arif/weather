@@ -89,32 +89,36 @@ class SectionWeatherView extends View {
   _labels() {
     return ["12 AM", "3 AM", "6 AM", "9 AM", "12 PM", "3 PM"];
   }
-  _chartData() {
+  _chartData(graphData) {
     return {
-      labels: this._labels(),
+      // labels: this._labels(),
       datasets: [
         {
           label: "Temperature",
           backgroundColor: "rgb(256 , 256 , 256)",
           borderColor: "rgb(256 , 256 , 256)",
-          data: [0, 10, 5, 2, 20, 30, 45],
+          data: graphData,
         },
       ],
     };
   }
 
-  config() {
+  config(graphData) {
+    console.log(graphData);
     return {
       type: "line",
-      data: this._chartData(),
+      data: this._chartData(graphData),
       options: {
         responsive: true,
         maintainAspectRatio: false,
         scales: {
           y: {
-            display: false,
             grid: {
               display: false,
+            },
+            ticks: {
+              suggestedMax: 100,
+              suggesteMin: -100,
             },
           },
           x: {

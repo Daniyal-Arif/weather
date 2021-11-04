@@ -117,6 +117,9 @@ input[type="text"] {
   outline: none;
 }
 
+.btn-search {
+  color: #fff;
+}
 /* MAIN CONTENT */
 /* SECTION WEATHER */
 
