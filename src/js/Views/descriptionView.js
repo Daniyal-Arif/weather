@@ -1,24 +1,29 @@
-class DescriptionView {
-  _parentElement = document.querySelector("section-more-info");
+import icons from "url:../../../src/img/icons.svg";
+import View from "./View";
 
-  render(data) {
-    this._data = data;
-    const markup = this.generateMarkup();
-    this._parentElement.innerHTML = "";
-
-    this._parentElement.insertAdjacentHTML("afterbegin", markup);
-  }
+class DescriptionView extends View {
+  _parentElement = document.querySelector(".section-more-info");
 
   generateMarkup() {
     return `
       <div class="detailed-description">
             <div class="day">
               <p class="day-type">Day</p>
-              <p class="day-info">Cloudy day. The high will stay at 33</p>
+              <p class="day-info">${
+                this._data[0][0].description
+              }. The temperature will stay at ${
+      this._data[0][0].temperature.tempMax
+    }</p>
             </div>
             <div class="night">
               <p class="day-type">Night</p>
-              <p class="day-info">Rainy night. The low will be at 27</p>
+              <p class="day-info">${
+                this._data[0].length < 2
+                  ? this._data[1][0].description
+                  : this._data[0].slice(-1)[0].description
+              }. The temperature will be at ${
+      this._data[0].slice(-1)[0].temperature.tempMax
+    }</p>
             </div>
           </div>
 
@@ -30,9 +35,11 @@ class DescriptionView {
                 alt="water droplets"
               />
               <div class="atmosphere-type">
-                <p class="type">Percipitation</p>
-                <span class="value">60</span>
-                <span class="unit">%</span>
+                <p class="type">Pressure</p>
+                <span class="value">${
+                  this._data[0][0].atmosphere.pressure
+                }</span>
+                <span class="unit">mbar</span>
               </div>
             </div>
             <div class="atmosphere">
@@ -43,7 +50,9 @@ class DescriptionView {
               />
               <div class="atmosphere-type">
                 <p class="type">humidity</p>
-                <span class="value">72</span>
+                <span class="value">${
+                  this._data[0][0].atmosphere.humidity
+                }</span>
                 <span class="unit">%</span>
               </div>
             </div>
@@ -55,7 +64,9 @@ class DescriptionView {
               />
               <div class="atmosphere-type">
                 <p class="type">Feel's like</p>
-                <span class="value">31</span>
+                <span class="value">${
+                  this._data[0][0].atmosphere.feelsLike
+                }</span>
                 <span class="unit">&#176;</span>
               </div>
             </div>
@@ -67,7 +78,7 @@ class DescriptionView {
               />
               <div class="atmosphere-type">
                 <p class="type">Wind Speed</p>
-                <span class="value">14</span>
+                <span class="value">${this._data[0][0].atmosphere.wind}</span>
                 <span class="unit">km/hr</span>
               </div>
             </div>

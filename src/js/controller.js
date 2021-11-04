@@ -1,5 +1,6 @@
 import * as model from "./model.js";
 import cardView from "./Views/cardView.js";
+import descriptionView from "./Views/descriptionView.js";
 
 import Chart from "chart.js/auto";
 import searchView from "./Views/searchView.js";
@@ -71,6 +72,7 @@ const controlSearchResults = async function () {
 
     // render data on UI
     cardView.render(model.state.arrangedWeatherData);
+    descriptionView.render(model.state.arrangedWeatherData);
   } catch (err) {
     console.log(err);
   }

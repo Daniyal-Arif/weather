@@ -44,6 +44,8 @@ export const loadWeather = async function (city) {
       };
     });
 
+    state.arrangedWeatherData = [];
+
     for (let i = 0; i < 6; i++) {
       const newDate = createDate(i);
 

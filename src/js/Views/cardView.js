@@ -1,16 +1,8 @@
 import icons from "url:../../../src/img/icons.svg";
+import View from "./View";
 
-class CardView {
-  _data;
+class CardView extends View {
   _parentElement = document.querySelector(".section-weather");
-
-  render(data) {
-    this._data = data;
-    const markup = this.generateMarkup();
-    this._parentElement.innerHTML = "";
-    console.log(this._data[0][0].date);
-    this._parentElement.insertAdjacentHTML("afterbegin", markup);
-  }
 
   generateMarkup() {
     return `
