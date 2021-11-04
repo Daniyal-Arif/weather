@@ -10,7 +10,6 @@ export const state = {
     "Friday",
     "Saturday",
   ],
-  weatherData: [], // 40 objects in array
   arrangedWeatherData: [], // arranged based on day, to be used in card
 };
 
@@ -22,11 +21,13 @@ export const loadWeather = async function (city) {
     );
     const data = await res.json();
     if (!res.ok) throw new Error("city does not exist");
+    console.log(data);
 
     // set state.weatherData object
-    state.weatherData = data.list.map((obj) => {
+    const weatherData = data.list.map((obj) => {
       return {
         date: obj.dt_txt.split(" ")[0],
+        time: convertTime(obj.dt_txt.split(" ")[1]),
         cardDate: [],
         atmosphere: {
           feelsLike: Math.round(obj.main.feels_like - 272.15),
@@ -44,13 +45,14 @@ export const loadWeather = async function (city) {
       };
     });
 
+    // reset data after call
     state.arrangedWeatherData = [];
 
     for (let i = 0; i < 6; i++) {
       const newDate = createDate(i);
 
       state.arrangedWeatherData.push(
-        state.weatherData.filter((obj) => {
+        weatherData.filter((obj) => {
           return (
             obj.date ===
             `${newDate.getFullYear()}-${newDate.getMonth() + 1}-${
@@ -62,7 +64,6 @@ export const loadWeather = async function (city) {
         })
       );
     }
-
     console.log(state.arrangedWeatherData);
   } catch (err) {
     console.log(err);
@@ -74,4 +75,15 @@ const createDate = function (day) {
   date.setDate(date.getDate() + day);
   console.log(date);
   return date;
+};
+
+const convertTime = function (time) {
+  const hour = Number(time.split(":")[0]);
+  const minute = Number(time.split(":")[1]);
+
+  const formattedTime =
+    hour > 12
+      ? `${hour - 12}:${minute < 10 ? "0" + minute : minute} pm`
+      : `${hour}:${minute < 10 ? "0" + minute : minute} am`;
+  return formattedTime;
 };

@@ -1,12 +1,13 @@
 import icons from "url:../../../src/img/icons.svg";
+import Chart from "chart.js/auto";
 import View from "./View";
 
-class CardView extends View {
-  _parentElement = document.querySelector(".section-weather");
+class SectionWeatherView extends View {
+  _parentElement = document.querySelector(".forecast-card-container");
 
   generateMarkup() {
     return `
-    <div class="forecast">
+         <div class="forecast">
             <ul class="cards">
               <li class="card card-active">
                 <a href="#" class="card-link">
@@ -77,13 +78,62 @@ class CardView extends View {
                 </p>
                 <p class="weather-description">${this._data[4][0].description}</p>
               </a>
-            </li>
-
-              
+              </li>    
             </ul>
           </div>
+
+          
     `;
+  }
+
+  _labels() {
+    return ["12 AM", "3 AM", "6 AM", "9 AM", "12 PM", "3 PM"];
+  }
+  _chartData() {
+    return {
+      labels: this._labels(),
+      datasets: [
+        {
+          label: "Temperature",
+          backgroundColor: "rgb(256 , 256 , 256)",
+          borderColor: "rgb(256 , 256 , 256)",
+          data: [0, 10, 5, 2, 20, 30, 45],
+        },
+      ],
+    };
+  }
+
+  config() {
+    return {
+      type: "line",
+      data: this._chartData(),
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: {
+            display: false,
+            grid: {
+              display: false,
+            },
+          },
+          x: {
+            grid: {
+              display: false,
+            },
+            ticks: {
+              color: "white",
+            },
+          },
+        },
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
+      },
+    };
   }
 }
 
-export default new CardView();
+export default new SectionWeatherView();
