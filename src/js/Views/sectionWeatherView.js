@@ -76,9 +76,6 @@ class SectionWeatherView extends View {
     `;
   }
 
-  _labels() {
-    return ["12 AM", "3 AM", "6 AM", "9 AM", "12 PM", "3 PM"];
-  }
   _chartData(graphData) {
     return {
       // labels: this._labels(),
@@ -126,6 +123,21 @@ class SectionWeatherView extends View {
         },
       },
     };
+  }
+
+  addHandlerGraph(handler) {
+    this._parentElement.addEventListener("click", function (e) {
+      const btn = e.target.closest(".card");
+      if (!btn) return;
+
+      document.querySelectorAll(".card").forEach((card) => {
+        card.classList.remove("card-active");
+        if (btn === card) card.classList.add("card-active");
+      });
+
+      handler();
+      console.log(btn);
+    });
   }
 }
 

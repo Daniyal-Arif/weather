@@ -58,5 +58,6 @@ const controlCardClick = function () {};
 
 const init = function () {
   searchView.addHandlerSearch(controlSearchResults);
+  sectionWeatherView.addHandlerGraph(controlCardClick);
 };
 init();

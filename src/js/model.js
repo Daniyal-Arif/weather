@@ -67,21 +67,37 @@ export const loadWeather = async function (city) {
     console.log(data);
 
     // return first 6 time and temperature
-    state.graphData = data.list
-      .filter((obj, i) => i < 6)
-      .map((obj) => {
-        const temperature = Math.round(obj.main.temp - 272.15);
-        return {
-          x: convertTime(obj.dt_txt.split(" ")[1]),
-          y: temperature,
-        };
-      });
+    state.graphData = createGraphData(data, 0);
+    console.log(state.graphData);
 
     // create weatherDataObject
     createDataObject(data);
   } catch (err) {
     console.log(err);
   }
+};
+
+export const loadCardGraph = function (data, i) {
+  createGraphData(data, i);
+};
+// data.list.map((obj) => obj.dt_txt.split(" ")[1]).findIndex()
+const createGraphData = function (data, i) {
+  return data.list
+    .slice(
+      i,
+      i +
+        1 +
+        data.list.findIndex((obj) => {
+          return obj.dt_txt.split(" ")[1].includes("00:00:00"); // till and including 12 am
+        })
+    )
+    .map((obj) => {
+      const temperature = Math.round(obj.main.temp - 272.15);
+      return {
+        x: convertTime(obj.dt_txt.split(" ")[1]),
+        y: temperature,
+      };
+    });
 };
 
 const createDate = function (day) {
@@ -99,7 +115,7 @@ const convertTime = function (time) {
   const formattedTime =
     hour > 12
       ? `${hour - 12}:${minute < 10 ? "0" + minute : minute} pm`
-      : `${hour}:${minute < 10 ? "0" + minute : minute} ${
+      : `${hour === 0 ? "12" : hour}:${minute < 10 ? "0" + minute : minute} ${
           hour === 12 ? "pm" : "am"
         }`;
   return formattedTime;
