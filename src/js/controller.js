@@ -6,19 +6,6 @@ import searchView from "./Views/searchView.js";
 
 import Chart from "chart.js/auto";
 
-// change background color of chart
-// const plugin = {
-//   id: "custom_canvas_background_color",
-//   beforeDraw: (chart) => {
-//     const ctx = chart.canvas.getContext("2d");
-//     ctx.save();
-//     ctx.globalCompositeOperation = "destination-over";
-//     ctx.fillStyle = "transparent";
-//     ctx.fillRect(0, 0, chart.width, chart.height);
-//     ctx.restore();
-//   },
-// };
-
 if (module.hot) {
   module.hot.accept();
 }
@@ -54,7 +41,14 @@ const controlSearchResults = async function () {
   }
 };
 
-const controlCardClick = function () {};
+const controlCardClick = function (cardNum) {
+  // create a chart instance and render
+  if (myChart) myChart.destroy();
+  myChart = new Chart(
+    document.getElementById("myChart"),
+    sectionWeatherView.config(model.createGraphData(model.state.data, cardNum))
+  );
+};
 
 const init = function () {
   searchView.addHandlerSearch(controlSearchResults);

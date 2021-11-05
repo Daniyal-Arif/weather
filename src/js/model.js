@@ -10,6 +10,7 @@ export const state = {
     "Friday",
     "Saturday",
   ],
+  data: [],
   arrangedWeatherData: [], // arranged based on day, to be used in card
   graphData: [],
 };
@@ -20,7 +21,6 @@ const createDataObject = function (data) {
     return {
       date: obj.dt_txt.split(" ")[0],
       time: convertTime(obj.dt_txt.split(" ")[1]),
-      cardDate: [],
       atmosphere: {
         feelsLike: Math.round(obj.main.feels_like - 272.15),
         humidity: obj.main.humidity,
@@ -46,16 +46,12 @@ const createDataObject = function (data) {
 
     state.arrangedWeatherData.push(
       weatherData.filter((obj) => {
-        return (
-          obj.date ===
-          `${newDate.getFullYear()}-${newDate.getMonth() + 1}-${
-            newDate.getDate() < 10 ? "0" + newDate.getDate() : newDate.getDate()
-          }`
-        );
+        return obj.date === newDate;
       })
     );
   }
 };
+
 export const loadWeather = async function (city) {
   try {
     // AJAX call
@@ -64,12 +60,11 @@ export const loadWeather = async function (city) {
     );
     const data = await res.json();
     if (!res.ok) throw new Error("city does not exist");
-    console.log(data);
+    state.data = data;
 
     // return first 6 time and temperature
     state.graphData = createGraphData(data, 0);
     console.log(state.graphData);
-
     // create weatherDataObject
     createDataObject(data);
   } catch (err) {
@@ -77,17 +72,22 @@ export const loadWeather = async function (city) {
   }
 };
 
-export const loadCardGraph = function (data, i) {
-  createGraphData(data, i);
-};
 // data.list.map((obj) => obj.dt_txt.split(" ")[1]).findIndex()
-const createGraphData = function (data, i) {
+// .filter((obj) => {
+//     return (
+//       obj.dt_txt.split(" ")[0] !==
+//         new Date().toISOString().slice(0, 10) ||
+//       createDate(1) !== obj.dt_txt.split(" ")[0]
+//     );
+//   })
+export const createGraphData = function (data, i) {
   return data.list
     .slice(
       i,
       i +
         1 +
-        data.list.findIndex((obj) => {
+        data.list.findIndex((obj, _, arr) => {
+          console.log(arr);
           return obj.dt_txt.split(" ")[1].includes("00:00:00"); // till and including 12 am
         })
     )
@@ -103,8 +103,11 @@ const createGraphData = function (data, i) {
 const createDate = function (day) {
   const date = new Date();
   date.setDate(date.getDate() + day);
+  const formattedDate = `${date.getFullYear()}-${date.getMonth() + 1}-${
+    date.getDate() < 10 ? "0" + date.getDate() : date.getDate()
+  }`;
 
-  return date;
+  return formattedDate;
 };
 
 // 24 hour to 12 hour clock
