@@ -1,4 +1,5 @@
 import * as model from "./model.js";
+import titleView from "./Views/titleView.js";
 import sectionWeatherView from "./Views/sectionWeatherView.js";
 import descriptionView from "./Views/descriptionView.js";
 import searchView from "./Views/searchView.js";
@@ -18,51 +19,6 @@ import Chart from "chart.js/auto";
 //   },
 // };
 
-// const labels = ["12 AM", "3 AM", "6 AM", "9 AM", "12 PM", "3 PM"];
-// const data = {
-//   labels: labels,
-//   datasets: [
-//     {
-//       label: "Temperature",
-//       backgroundColor: "rgb(256 , 256 , 256)",
-//       borderColor: "rgb(256 , 256 , 256)",
-//       data: [0, 10, 5, 2, 20, 30, 45],
-//     },
-//   ],
-// };
-
-// const config = {
-//   type: "line",
-//   data: data,
-//   options: {
-//     responsive: true,
-//     maintainAspectRatio: false,
-//     scales: {
-//       y: {
-//         display: false,
-//         grid: {
-//           display: false,
-//         },
-//       },
-//       x: {
-//         grid: {
-//           display: false,
-//         },
-//         ticks: {
-//           color: "white",
-//         },
-//       },
-//     },
-//     plugins: {
-//       legend: {
-//         display: false,
-//       },
-//     },
-//   },
-// };
-
-// const myChart = new Chart(document.getElementById("myChart"), config);
-
 if (module.hot) {
   module.hot.accept();
 }
@@ -77,6 +33,9 @@ const controlSearchResults = async function () {
     // load search results
     await model.loadWeather(query);
     // add error handling here
+
+    // render title
+    titleView.render(model.state.arrangedWeatherData);
 
     // render card data
     sectionWeatherView.render(model.state.arrangedWeatherData);
@@ -94,6 +53,8 @@ const controlSearchResults = async function () {
     console.log(err);
   }
 };
+
+const controlCardClick = function () {};
 
 const init = function () {
   searchView.addHandlerSearch(controlSearchResults);
