@@ -34,6 +34,7 @@ const createDataObject = function (data) {
       },
       description: obj.weather[0].description,
       iconTag: obj.weather[0].main.toLowerCase(),
+      iconId: obj.weather[0].icon,
     };
   });
 
@@ -63,6 +64,7 @@ export const loadWeather = async function (city) {
     );
     const data = await res.json();
     if (!res.ok) throw new Error("city does not exist");
+    console.log(data);
 
     // return first 6 time and temperature
     state.graphData = data.list
@@ -89,6 +91,7 @@ const createDate = function (day) {
   return date;
 };
 
+// 24 hour to 12 hour clock
 const convertTime = function (time) {
   const hour = Number(time.split(":")[0]);
   const minute = Number(time.split(":")[1]);

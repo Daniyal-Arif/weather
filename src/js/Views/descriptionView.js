@@ -29,11 +29,9 @@ class DescriptionView extends View {
 
           <div class="atmosphere-info">
             <div class="atmosphere">
-              <img
-                class="logo"
-                src="img/icon-pack/weather-114/svg/water.svg"
-                alt="water droplets"
-              />
+            <svg class="logo">
+            <use href="${icons}#icon-pressure"></use>
+          </svg>
               <div class="atmosphere-type">
                 <p class="type">Pressure</p>
                 <span class="value">${
@@ -43,11 +41,9 @@ class DescriptionView extends View {
               </div>
             </div>
             <div class="atmosphere">
-              <img
-                class="logo"
-                src="img/icon-pack/weather-114/svg/wind.svg"
-                alt="water droplets"
-              />
+            <svg class="logo">
+            <use href="${icons}#icon-water"></use>
+          </svg>
               <div class="atmosphere-type">
                 <p class="type">humidity</p>
                 <span class="value">${
@@ -57,11 +53,9 @@ class DescriptionView extends View {
               </div>
             </div>
             <div class="atmosphere">
-              <img
-                class="logo"
-                src="img/icon-pack/weather-114/svg/temperature-feels-like.svg"
-                alt="water droplets"
-              />
+            <svg class="logo">
+            <use href="${icons}#icon-temperature"></use>
+          </svg>
               <div class="atmosphere-type">
                 <p class="type">Feel's like</p>
                 <span class="value">${
@@ -71,11 +65,9 @@ class DescriptionView extends View {
               </div>
             </div>
             <div class="atmosphere">
-              <img
-                class="logo"
-                src="img/icon-pack/weather-114/svg/wind.svg"
-                alt="water droplets"
-              />
+            <svg class="logo">
+            <use href="${icons}#icon-wind"></use>
+          </svg>
               <div class="atmosphere-type">
                 <p class="type">Wind Speed</p>
                 <span class="value">${this._data[0][0].atmosphere.wind}</span>

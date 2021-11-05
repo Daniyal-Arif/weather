@@ -63,6 +63,10 @@ import Chart from "chart.js/auto";
 
 // const myChart = new Chart(document.getElementById("myChart"), config);
 
+if (module.hot) {
+  module.hot.accept();
+}
+
 let myChart;
 
 const controlSearchResults = async function () {
@@ -72,16 +76,19 @@ const controlSearchResults = async function () {
 
     // load search results
     await model.loadWeather(query);
+    // add error handling here
 
-    // render data on UI
+    // render card data
     sectionWeatherView.render(model.state.arrangedWeatherData);
-    // create a chart instance
+
+    // create a chart instance and render
     if (myChart) myChart.destroy();
     myChart = new Chart(
       document.getElementById("myChart"),
       sectionWeatherView.config(model.state.graphData)
     );
 
+    // render description
     descriptionView.render(model.state.arrangedWeatherData);
   } catch (err) {
     console.log(err);
@@ -91,5 +98,4 @@ const controlSearchResults = async function () {
 const init = function () {
   searchView.addHandlerSearch(controlSearchResults);
 };
-
 init();

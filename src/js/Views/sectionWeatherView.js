@@ -12,9 +12,7 @@ class SectionWeatherView extends View {
               <li class="card card-active">
                 <a href="#" class="card-link">
                   <p class="date">${this._data[0][0].date}</p>
-                  <svg class="logo">
-                    <use href="${icons}#icon-cloud"></use>
-                  </svg>
+                  <img src="http://openweathermap.org/img/wn/${this._data[0][0].iconId}@2x.png" alt="" height="42" width="42" />
                   
                   <p class="temperature">
                     <span class="max-temperature">${this._data[0][0].temperature.tempMax}&#176;C</span>/
@@ -27,9 +25,7 @@ class SectionWeatherView extends View {
               <li class="card">
                 <a href="#" class="card-link">
                   <p class="date">${this._data[1][0].date}</p>
-                  <svg class="logo">
-                    <use href="${icons}#icon-cloud"></use>
-                  </svg>
+                  <img src="http://openweathermap.org/img/wn/${this._data[1][0].iconId}@2x.png" alt="" height="42" width="42" />
                   <p class="temperature">
                     <span class="max-temperature">${this._data[1][0].temperature.tempMax}&#176;C</span>/
                     <span class="min-temperature">${this._data[1][0].temperature.tempMin}&#176;C</span>
@@ -41,9 +37,7 @@ class SectionWeatherView extends View {
               <li class="card">
                 <a href="#" class="card-link">
                   <p class="date">${this._data[2][0].date}</p>
-                  <svg class="logo">
-                    <use href="${icons}#icon-cloud"></use>
-                  </svg>
+                  <img src="http://openweathermap.org/img/wn/${this._data[2][0].iconId}@2x.png" alt="" height="42" width="42" />
                   <p class="temperature">
                     <span class="max-temperature">${this._data[2][0].temperature.tempMax}&#176;C</span>/
                     <span class="min-temperature">${this._data[2][0].temperature.tempMin}&#176;C</span>
@@ -55,9 +49,7 @@ class SectionWeatherView extends View {
               <li class="card">
                 <a href="#" class="card-link">
                   <p class="date">${this._data[3][0].date}</p>
-                  <svg class="logo">
-                    <use href="${icons}#icon-cloud"></use>
-                  </svg>
+                  <img src="http://openweathermap.org/img/wn/${this._data[3][0].iconId}@2x.png" alt="" height="42" width="42" />
                   <p class="temperature">
                     <span class="max-temperature">${this._data[3][0].temperature.tempMax}&#176;C</span>/
                     <span class="min-temperature">${this._data[3][0].temperature.tempMin}&#176;C</span>
@@ -69,9 +61,7 @@ class SectionWeatherView extends View {
               <li class="card">
               <a href="#" class="card-link">
                 <p class="date">${this._data[4][0].date}</p>
-                <svg class="logo">
-                    <use href="${icons}#icon-cloud"></use>
-                  </svg>
+                <img src="http://openweathermap.org/img/wn/${this._data[4][0].iconId}@2x.png" alt="" height="42" width="42" />
                 <p class="temperature">
                   <span class="max-temperature">${this._data[4][0].temperature.tempMax}&#176;C</span>/
                   <span class="min-temperature">${this._data[4][0].temperature.tempMin}&#176;C</span>
@@ -117,8 +107,7 @@ class SectionWeatherView extends View {
               display: false,
             },
             ticks: {
-              suggestedMax: 100,
-              suggesteMin: -100,
+              color: "white",
             },
           },
           x: {
