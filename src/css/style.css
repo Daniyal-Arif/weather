@@ -129,11 +129,15 @@ input[type="text"] {
 
 .section-weather {
   max-width: 110rem;
-  background-color: rgba(250, 257, 257, 0.075);
+  /* background-color: rgba(250, 257, 257, 0.075); */
   padding: 6.4rem;
   padding-top: 3.2rem;
   border-radius: 12px;
   margin-bottom: 2.4rem;
+}
+
+.section-weather-active {
+  background-color: rgba(250, 257, 257, 0.075);
 }
 
 .cards {

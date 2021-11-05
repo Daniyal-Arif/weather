@@ -123,3 +123,5 @@ const convertTime = function (time) {
         }`;
   return formattedTime;
 };
+
+export const toggleUnits = function () {};

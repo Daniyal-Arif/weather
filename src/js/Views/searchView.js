@@ -9,9 +9,18 @@ class SearchView {
 
   addHandlerSearch(handler) {
     this._parentElement.addEventListener("submit", function (e) {
+      document
+        .querySelector(".section-weather")
+        .classList.add("section-weather-active");
       e.preventDefault();
       handler();
     });
+  }
+
+  _displayBackgroundColor() {
+    document
+      .querySelector(".section-weather")
+      .classList.add(".section-weather-active");
   }
 }
 
