@@ -62,11 +62,11 @@ export const loadWeather = async function (city) {
     if (!res.ok) throw new Error("city does not exist");
     state.data = data;
 
-    // return first 6 time and temperature
-    state.graphData = createGraphData(data, 0);
-    console.log(state.graphData);
     // create weatherDataObject
     createDataObject(data);
+
+    // return first 6 time and temperature
+    state.graphData = createGraphData(state.arrangedWeatherData, 0);
   } catch (err) {
     console.log(err);
   }
@@ -81,23 +81,14 @@ export const loadWeather = async function (city) {
 //     );
 //   })
 export const createGraphData = function (data, i) {
-  return data.list
-    .slice(
-      i,
-      i +
-        1 +
-        data.list.findIndex((obj, _, arr) => {
-          console.log(arr);
-          return obj.dt_txt.split(" ")[1].includes("00:00:00"); // till and including 12 am
-        })
-    )
-    .map((obj) => {
-      const temperature = Math.round(obj.main.temp - 272.15);
-      return {
-        x: convertTime(obj.dt_txt.split(" ")[1]),
-        y: temperature,
-      };
-    });
+  console.log(data);
+  return data[i].map((obj) => {
+    const temperature = Math.round(obj.temperature.temp);
+    return {
+      x: obj.time,
+      y: temperature,
+    };
+  });
 };
 
 const createDate = function (day) {

@@ -46,7 +46,9 @@ const controlCardClick = function (cardNum) {
   if (myChart) myChart.destroy();
   myChart = new Chart(
     document.getElementById("myChart"),
-    sectionWeatherView.config(model.createGraphData(model.state.data, cardNum))
+    sectionWeatherView.config(
+      model.createGraphData(model.state.arrangedWeatherData, cardNum)
+    )
   );
 };
 
