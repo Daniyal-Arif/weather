@@ -1,4 +1,4 @@
-import icons from "url:../../../src/img/icons.svg";
+import icons from "url:../../../src/img/icons.svg"; // url:../../../src/img/icons.svg";
 import Chart from "chart.js/auto";
 import View from "./View";
 
@@ -11,7 +11,7 @@ class SectionWeatherView extends View {
     for (let i = 0; i < arrSize; i++) {
       sum += this._data[i].length;
     }
-    console.log(sum);
+
     return sum;
   }
 

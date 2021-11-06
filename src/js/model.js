@@ -81,7 +81,6 @@ export const loadWeather = async function (city) {
 //     );
 //   })
 export const createGraphData = function (data, i) {
-  console.log(data);
   return data[i].map((obj) => {
     const temperature = Math.round(obj.temperature.temp);
     return {
