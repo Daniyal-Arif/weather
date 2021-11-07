@@ -1,3 +1,5 @@
 # weather app
 
-link: https://compassionate-curran-bc39b0.netlify.app/#
+link: https://weather-forecast-everyday.netlify.app
+
+click on city, type any city name and see the magic
