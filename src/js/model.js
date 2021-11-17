@@ -113,5 +113,5 @@ const convertTime = function (time) {
         }`;
   return formattedTime;
 };
-
+console.log(3);
 export const toggleUnits = function () {};
