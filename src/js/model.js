@@ -61,7 +61,6 @@ export const loadWeather = async function (city) {
     const data = await res.json();
     if (!res.ok) throw new Error("city does not exist");
     state.data = data;
-
     // create weatherDataObject
     createDataObject(data);
 
@@ -93,9 +92,9 @@ export const createGraphData = function (data, i) {
 const createDate = function (day) {
   const date = new Date();
   date.setDate(date.getDate() + day);
-  const formattedDate = `${date.getFullYear()}-${date.getMonth() + 1}-${
-    date.getDate() < 10 ? "0" + date.getDate() : date.getDate()
-  }`;
+  const formattedDate = `${date.getFullYear()}-${
+    date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1
+  }-${date.getDate() < 10 ? "0" + date.getDate() : date.getDate()}`;
 
   return formattedDate;
 };
@@ -113,5 +112,5 @@ const convertTime = function (time) {
         }`;
   return formattedTime;
 };
-console.log(3);
+
 export const toggleUnits = function () {};

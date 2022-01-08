@@ -16,7 +16,6 @@ const controlSearchResults = async function () {
   try {
     // get search query
     const query = searchView.getQuery();
-
     // load search results
     await model.loadWeather(query);
     // add error handling here
