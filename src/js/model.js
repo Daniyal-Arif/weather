@@ -50,6 +50,9 @@ const createDataObject = function (data) {
       })
     );
   }
+
+  // fix bug as first array is not showing feb 17
+  state.arrangedWeatherData.shift();
 };
 
 export const loadWeather = async function (city) {
@@ -59,6 +62,7 @@ export const loadWeather = async function (city) {
       `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${KEY}`
     );
     const data = await res.json();
+
     if (!res.ok) throw new Error("city does not exist");
     state.data = data;
     // create weatherDataObject

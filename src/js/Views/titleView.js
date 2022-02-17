@@ -5,6 +5,7 @@ class TitleView extends View {
 
   generateMarkup() {
     console.log(this._data);
+    console.log(555);
     return `
     <img src="http://openweathermap.org/img/wn/${this._data[0][0].iconId}@2x.png" alt="" height="42" width="42" />
   <p class="header-temp">${this._data[0][0].temperature.temp}&#176;C</p>
